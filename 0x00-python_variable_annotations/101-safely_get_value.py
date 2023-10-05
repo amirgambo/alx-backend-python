@@ -1,23 +1,10 @@
-#!/usr/bin/env python3
+from typing import TypeVar, Mapping, Any, Union
 
-"""
-Module with type-annotated function 'safely_get_value'
-"""
+T = TypeVar('T')
 
 
-from typing import TypeVar, Dict, Optional
-
-K = TypeVar('K')  # Type variable for keys
-V = TypeVar('V')  # Type variable for values
-
-
-def safely_get_value(dct: Dict[K, V], key: K,
-                     default: Optional[V] = None) -> Optional[V]:
-    """
-    Function that safely gets a value from a dictionary.
-    If the key exists, it returns the value; otherwise,
-    it returns the default value (or None if not provided).
-    """
+def safely_get_value(dct: Mapping, key: Any,
+                     default: T = None) -> Union[Any, T]:
     if key in dct:
         return dct[key]
     else:
